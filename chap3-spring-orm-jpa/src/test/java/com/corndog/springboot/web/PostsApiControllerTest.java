@@ -95,7 +95,7 @@ public class PostsApiControllerTest {
         assertThat(responseEntity.getBody()).isEqualTo(updateId);
 
         List<Posts> all = postsRepository.findAll();
-        assertThat(all.get(updateId.intValue()).getTitle()).isEqualTo(expectedTitle);
-        assertThat(all.get(updateId.intValue()).getContent()).isEqualTo(expectedContent);
+        assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
+        assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
     }
 }
