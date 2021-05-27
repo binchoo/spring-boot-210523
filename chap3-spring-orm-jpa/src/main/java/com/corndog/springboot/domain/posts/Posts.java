@@ -28,13 +28,18 @@ public class Posts { // 실제 DB 테이블과 매칭되는 클래스이다. 이
     //Column 선언하지 않은 경우도 칼럼이 된다. 기본값 VARCHAR(255)
     private String author;
 
+    /**
+     * Posts.builder().title().content().author().build();
+     */
     @Builder // 이 생성자를 이용하여 Builder 패턴을 만든다
     public Posts(String title, String content, String author) {
         this.title = title;
         this.content = content;
         this.author = author;
     }
-    /**
-     * Posts.builder().title().content().author().build();
-     */
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }

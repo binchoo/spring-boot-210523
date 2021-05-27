@@ -25,10 +25,11 @@ public class PostsRepositoryTest {
 
     @Test
     public void 게시글저장_불러오기() {
-        //given
+        // given
         String title = "test title";
         String content = "test text";
 
+        // when
         postsRepository.save(Posts.builder() // table에 Posts 객체 정보대로 저장
                 .title(title)
                 .content(content)
@@ -37,6 +38,7 @@ public class PostsRepositoryTest {
 
         List<Posts> postsList = postsRepository.findAll();
 
+        // then
         Posts posts = postsList.get(0);
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
