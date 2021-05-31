@@ -13,7 +13,7 @@ import javax.persistence.Column; // 이 필드가 테이블 칼럼이 됨을 명
 @Getter
 @NoArgsConstructor
 @Entity
-public class Posts { // 실제 DB 테이블과 매칭되는 클래스이다. 이를 Entity 클래스라 한다.
+public class Posts extends BaseTimeEntity { // 실제 DB 테이블과 매칭되는 클래스이다. 이를 Entity 클래스라 한다.
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto-increment
