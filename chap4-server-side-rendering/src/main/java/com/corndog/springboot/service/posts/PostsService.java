@@ -46,4 +46,11 @@ public class PostsService {
                 .map(PostsListResponseDto::new) //클라이언트에 반환할 DTO 타입으로 변환하여 제공!
                 .collect(Collectors.toList());
     }
+
+    public void delete(Long id) {
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("해당 게시글이 없어요. id=" + id));
+
+        postsRepository.delete(posts);
+    }
 }
