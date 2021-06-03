@@ -22,7 +22,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT) // 서버가 랜덤 포트를 듣도록 구성한다.
 public class PostsApiControllerTest {
@@ -117,5 +116,29 @@ public class PostsApiControllerTest {
 
         assertThat(posts.getCreatedDate()).isAfter(now);
         assertThat(posts.getModifiedDate()).isAfter(now);
+    }
+
+    @Test
+    public void Posts_삭제된다() throws Exception {
+
+        // given
+        Posts savedPosts = postsRepository.save(Posts.builder().title("111")
+                .author("222")
+                .title("333")
+                .content("444")
+                .build());
+
+        // when
+        String url = "http://localhost:" + port + "/api/v1/posts/" + savedPosts.getId();
+        restTemplate.delete(url);
+
+        // then
+        try {
+            postsRepository.findById(savedPosts.getId()).orElseThrow(()-> new IllegalArgumentException());
+        } catch (Exception e) {
+            return;
+        }
+
+        throw new Exception();
     }
 }
