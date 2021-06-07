@@ -1,0 +1,47 @@
+// 그래들 프로젝트의 플러그인 의존성 설정함
+buildscript {
+    // build.gradle 사용할 전역 변수를 선언한다. 버전을 하나의 변수로 관리하는 행태임.
+    ext {
+        springBootVersion = '2.4.6'
+    }
+    // 스프링 부트 플러그인 패스 설정; 특정 버전을 지정 중.
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+    // 의존 플러그인은 다음과 같은 레포지토리를 뒤져서 얻을 것이다.
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+}
+
+// 앞서 선언된 플러그인 의존성의 적용 여부를 작성함
+// 아래 4가지는 Java Spring Boot 사용에 필수인 플러그인이므로 항상 추가.
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management' // Spring Boot 의존성을 관리하는 플러그인
+
+group 'com.corndog'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+// 프로젝트의 '개발' 의존성(=라이브러리)을 선언함.
+// 'Ctrl + Space' 자동완성 사용가능.
+// 버전 명시하면 ${springBootVersion} 무시되므로, 여기선 명시하지 말자.
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // Spring Boot용 Spring Data JPA 라이브러리
+    implementation 'com.h2database:h2' // in-memory 관계형 데이터베이스. 휘발성이므로 테스트 용도로 사용하면 좋다.
+    implementation 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-mustache'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+// 'Ctrl + Shift + O'로 그래들 싱크
