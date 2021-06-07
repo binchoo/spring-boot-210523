@@ -2,6 +2,7 @@ package com.corndog.springboot.domain.user;
 
 
 import com.corndog.springboot.domain.posts.BaseTimeEntity;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -29,6 +30,7 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false)
     private Role role;
 
+    @Builder
     public User(String name, String email, String picture, Role role) {
         this.name = name;
         this.email = email;
