@@ -4,7 +4,9 @@ import com.corndog.springboot.domain.user.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 
 @RequiredArgsConstructor
 @EnableWebSecurity // Spring Security 기능을 활성화. 이 클래스의 configure에서 보안 설정을 정의하고 있다.
@@ -30,4 +32,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .userInfoEndpoint()
                             .userService(customOAuth2UserService);
     }
+
+
 }
